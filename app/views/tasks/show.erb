@@ -1,0 +1,26 @@
+<h1 class="text-6xl py-4">Hello <%=@user.username %>!</h1>
+<a href="/lists/new"><button type="button" class="btn btn-primary">Create A New List</button></a>
+
+<div class="container mx-auto px-12">
+<% @lists.each do |list|%>
+<% if list.user_id == @user.id %>
+<!-- So this pulls all lists and checks it it matches the user id before iterating over them -->
+<div class="text-4xl py-4 italic"><%= list.name %></div>
+<a class="link link-primary" href="/lists/<%=list.id%>/edit">Edit List</a>
+<a class="link link-secondary"href="/lists/<%=list.id%>/delete"> Delete List</a>
+<div class="text-lg italic"><a class="link link-accent"href="tasks/new/<%=list.id%>"> New Task</a></div>
+
+<% list.tasks.each do |task| %>
+<div class="card w-96 bg-base-100 shadow-xl">
+  <div class="card-body">
+    <h2 class="card-title"><%= task.name %></h2>
+    <div class="card-actions justify-end">
+        <a href="/tasks/<%= task.id %>/edit"><button class="btn btn-secondary"></i>Edit</a>
+        <a href="/tasks/<%= task.id %>/delete"><button class="btn btn-outline btn-primary"></i>Delete</a>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<% end %>
+<% end %>

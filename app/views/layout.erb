@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <title>ToDoo - A To Do App, Dude</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.50.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <html data-theme="cyberpunk"></html>
+  </head>
+  <body class="container mx-auto">
+    <nav class="navbar bg-base-100">
+        <div class="flex-1">
+             <a class="btn btn-ghost normal-case text-xl">Sinatra ToDo/ DaisyUI</a>
+        </div>
+         <div class="flex-none">
+             <ul class="menu menu-horizontal px-1">
+                <% if logged_in? %>
+                    <li><a href="/lists/new">Create New List</a></li>
+                    <li><a href="/tasks/new">Create New Task</a></li>
+                    <li><a href="/logout">Log Out</a></li>
+                <% else %>
+                    <li><a href="/login">Log In</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                <% end %>
+             </ul>
+            </div>
+    </nav>
+    <div class="container mx-auto">
+      <%= yield %>
+    </div>
+</body>
+</html>
